@@ -6,25 +6,6 @@
   },
   "inbounds": [
     {
-      "port": 10000,
-      "listen": "127.0.0.1",
-      "protocol": "vmess",
-      "settings": {
-        "clients": [
-          {
-            "id": "UUID",
-            "alterId": 0
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "VMESS_WSPATH"
-        }
-      }
-    },
-    {
       "port": 20000,
       "listen": "127.0.0.1",
       "protocol": "vless",
@@ -51,9 +32,9 @@
     }
   ],
   "dns": {
-    "server": [
+    "servers": [
+      "1.1.1.1",
       "8.8.8.8",
-      "8.8.4.4",
       "localhost"
     ]
   }
