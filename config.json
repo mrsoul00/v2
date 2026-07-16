@@ -1,7 +1,7 @@
 {
   "log": {
     "access": "/dev/null",
-    "error": "/tmp/xray-error.log",
+    "error": "/dev/null",
     "loglevel": "warning"
   },
   "inbounds": [
@@ -13,18 +13,14 @@
         "clients": [
           {
             "id": "UUID",
-            "alterId": 0,
-            "security": "auto"
+            "alterId": 0
           }
         ]
       },
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "VMESS_WSPATH",
-          "headers": {
-            "Host": "YOUR_DOMAIN"
-          }
+          "path": "VMESS_WSPATH"
         }
       }
     },
@@ -35,43 +31,15 @@
       "settings": {
         "clients": [
           {
-            "id": "UUID",
-            "flow": "xtls-rprx-vision"
+            "id": "UUID"
           }
         ],
         "decryption": "none"
       },
       "streamSettings": {
         "network": "ws",
-        "security": "none",
         "wsSettings": {
-          "path": "VLESS_WSPATH",
-          "headers": {
-            "Host": "YOUR_DOMAIN"
-          }
-        }
-      }
-    },
-    {
-      "port": 30000,
-      "listen": "127.0.0.1",
-      "protocol": "trojan",
-      "settings": {
-        "clients": [
-          {
-            "password": "UUID",
-            "flow": "xtls-rprx-vision"
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "TROJAN_WSPATH",
-          "headers": {
-            "Host": "YOUR_DOMAIN"
-          }
+          "path": "VLESS_WSPATH"
         }
       }
     }
@@ -79,54 +47,13 @@
   "outbounds": [
     {
       "protocol": "freedom",
-      "tag": "direct",
-      "settings": {
-        "domainStrategy": "UseIPv4"
-      }
-    },
-    {
-      "protocol": "blackhole",
-      "tag": "block",
       "settings": {}
     }
   ],
-  "routing": {
-    "domainStrategy": "AsIs",
-    "rules": [
-      {
-        "type": "field",
-        "protocol": ["bittorrent"],
-        "outboundTag": "block"
-      },
-      {
-        "type": "field",
-        "domain": ["geosite:category-ads-all"],
-        "outboundTag": "block"
-      },
-      {
-        "type": "field",
-        "domain": ["geosite:ir"],
-        "outboundTag": "direct"
-      },
-      {
-        "type": "field",
-        "domain": ["geosite:cn"],
-        "outboundTag": "direct"
-      }
-    ]
-  },
   "dns": {
-    "servers": [
-      {
-        "address": "8.8.8.8",
-        "port": 53,
-        "domains": ["geosite:geolocation-!cn"]
-      },
-      {
-        "address": "1.1.1.1",
-        "port": 53,
-        "domains": ["geosite:geolocation-!cn"]
-      },
+    "server": [
+      "8.8.8.8",
+      "8.8.4.4",
       "localhost"
     ]
   }
