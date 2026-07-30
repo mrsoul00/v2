@@ -6,6 +6,25 @@
   },
   "inbounds": [
     {
+      "port": 10000,
+      "listen": "127.0.0.1",
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "UUID",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "VMESS_WSPATH"
+        }
+      }
+    },
+    {
       "port": 20000,
       "listen": "127.0.0.1",
       "protocol": "vless",
@@ -23,6 +42,22 @@
           "path": "VLESS_WSPATH"
         }
       }
+    },
+    {
+      "port": 30000,
+      "listen": "127.0.0.1",
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "aes-128-gcm",
+        "password": "UUID",
+        "network": "tcp,udp"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "SS_WSPATH"
+        }
+      }
     }
   ],
   "outbounds": [
@@ -33,8 +68,8 @@
   ],
   "dns": {
     "servers": [
-      "1.1.1.1",
       "8.8.8.8",
+      "1.1.1.1",
       "localhost"
     ]
   }
